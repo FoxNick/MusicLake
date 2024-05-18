@@ -2,6 +2,7 @@ package com.cyl.musiclake.ui.widget.lyric;
 
 import com.cyl.musiclake.utils.LogUtil;
 import com.cyl.musiclake.ui.widget.lyric.LyricInfo.LineInfo;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -63,7 +64,7 @@ public class LyricParseUtils {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charsetName);
                 BufferedReader reader = new BufferedReader(inputStreamReader);
                 String line = null;
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     analyzeLyric(lyricInfo, line);
                 }
                 //歌词排序

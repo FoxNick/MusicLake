@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -649,7 +650,7 @@ public class FileUtils {
         FileOutputStream tmpOut = null;
         FileInputStream tmpIn = null;
         try {
-            File tmp = File.createTempFile("tmp", null);
+            File tmp = Files.createTempFile("tmp", null).toFile();
             tmp.deleteOnExit();//在JVM退出时删除
 
             raf = new RandomAccessFile(filePath, "rw");

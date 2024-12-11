@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -565,7 +566,7 @@ public class FileUtils {
         creatFile(filePath);
         BufferedWriter bufferedWriter = null;
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(filePath));
+            bufferedWriter = Files.newBufferedWriter(filePath.toPath());
             bufferedWriter.write(content);
         } catch (IOException e) {
             e.printStackTrace();

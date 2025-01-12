@@ -54,6 +54,7 @@ import com.cyl.musiclake.utils.SPUtils;
 import com.cyl.musiclake.utils.SystemUtils;
 import com.cyl.musiclake.utils.ToastUtils;
 import com.cyl.musiclake.ui.widget.appwidgets.StandardWidget;
+import java.security.SecureRandom;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -625,7 +626,7 @@ public class MusicPlayerService extends Service {
                 return mPlayingPos;
             }
         } else if (playModeId == PlayQueueManager.PLAY_MODE_RANDOM) {
-            return new Random().nextInt(mPlayQueue.size());
+            return new SecureRandom().nextInt(mPlayQueue.size());
         } else {
             if (mPlayingPos == mPlayQueue.size() - 1) {
                 return 0;
@@ -654,8 +655,8 @@ public class MusicPlayerService extends Service {
                 return 0;
             }
         } else if (playModeId == PlayQueueManager.PLAY_MODE_RANDOM) {
-            mPlayingPos = new Random().nextInt(mPlayQueue.size());
-            return new Random().nextInt(mPlayQueue.size());
+            mPlayingPos = new SecureRandom().nextInt(mPlayQueue.size());
+            return new SecureRandom().nextInt(mPlayQueue.size());
         } else {
             if (mPlayingPos == 0) {
                 return mPlayQueue.size() - 1;

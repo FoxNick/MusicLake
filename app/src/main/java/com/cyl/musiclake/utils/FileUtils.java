@@ -2,6 +2,7 @@ package com.cyl.musiclake.utils;
 
 import android.content.Context;
 import android.os.Environment;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -409,7 +410,7 @@ public class FileUtils {
             bufferedReader = new BufferedReader(new FileReader(filePath));
             String tempFileStr = "";
 
-            while ((tempFileStr = bufferedReader.readLine()) != null) {
+            while ((tempFileStr = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
                 fileStr.append(tempFileStr);
                 fileStr.append("\n");
             }
@@ -485,7 +486,7 @@ public class FileUtils {
         String readerstr = "";
         try {
             String tempstr = "";
-            while ((tempstr = bufferedReader.readLine()) != null) {
+            while ((tempstr = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
                 readerstr += tempstr;
             }
             return readerstr;
